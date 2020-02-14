@@ -82,5 +82,5 @@ print("se completaron todos los campos")
 driver.find_element_by_class_name('boton-enviar').click()
 ale = driver.switch_to_alert()
 ale.text
-ale.accept
+ale.accept()
 

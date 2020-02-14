@@ -47,4 +47,4 @@ time.sleep(2)
 driver.find_element_by_id('submit').click()
 ale = driver.switch_to_alert()
 ale.text
-ale.accept
+ale.accept()
