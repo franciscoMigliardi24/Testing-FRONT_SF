@@ -2,8 +2,8 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
  
-driver = webdriver.Chrome()
-driver.get("http://http://localhost:8080/registro")
+driver = webdriver.Firefox()
+driver.get("http://localhost:8080/registro")
  
 time.sleep(2)
 
@@ -17,7 +17,7 @@ else:
 #funcion que busca el campo y lo completa
 def completarCamposFunc(idCampo, contenidoCampo):
     try:
-        element = driver.find_element_by_name(idCampo)
+        element = driver.find_element_by_id(idCampo)
         element.send_keys(contenidoCampo)
         print("el campo " + idCampo + "fue comletado con " + contenidoCampo)
     except:
@@ -45,7 +45,8 @@ completarCamposFunc("correo", "frantest@fran.com")
 time.sleep(2)
 
 #enviar respuesta de usuario creado
-driver.find_element_by_id('submit').click()
-ale = driver.switch_to_alert()
-ale.text
-ale.accept()
+try:
+  driver.find_element_by_id('submit').click()
+  print("usuario creado")
+except:
+  print("usuario no creado")

@@ -2,27 +2,27 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
 
-driver = webdriver.Chrome()
-driver.get("http://localhost:8081/login")
+driver = webdriver.Firefox()
+driver.get("http://localhost:8080/login")
 
 
-if "login.html" in driver.title:
+if "login" in driver.title:
   print("Se pudo entrar a la pagina de login")
 else:
   print("No se pudo entrar a la pagina de login")
 
 #iniciar sesion
-elem = driver.find_element_by_name("nombreUsuario")
+elem = driver.find_element_by_id("nombreUsuario")
 elem.send_keys("FranTest")
-elem = driver.find_element_by_name("contraseña")
+elem = driver.find_element_by_id("contrasena")
 elem.send_keys("contrasena123")
 
-driver.find_element_by_class_name('boton-enviar').click()
+driver.find_element_by_class_name('buttonhover').click()
 
 time.sleep(2)
 
 #varifica si se pudo inciar sesion
-if "login.html" in driver.title:
+if "logged" in driver.title:
     print("Se pudo iniciar sesion")
 else:
 	print("No se pudo iniciar sesion")
@@ -33,7 +33,7 @@ time.sleep(2)
 driver.find_element_by_class_name('boton-1').click()
 
 #abrir modal para crear cliente
-driver.find_element_by_class_name('agregarCliente').click()
+driver.find_element_by_id('editar-tabla').click()
 
 #funcion para completar los campos
 def completarCamposFunc(idCampo, contenidoCampo):
@@ -79,11 +79,11 @@ completarCamposFunc("palabraEdicion", "15")
 completarCamposFunc("palabraProofreading", "1")
 
 time.sleep(1)
-print("se completaron todos los campos")
 
-#enviar cliente creado
-driver.find_element_by_class_name('boton-enviar').click()
-ale = driver.switch_to_alert()
-ale.text
-ale.accept()
+#enviar cliente editado
+try:
+  driver.find_element_by_id('botonenviar').click()
+  print("cliente editado")
+except:
+  print("cliente no editado")
 
