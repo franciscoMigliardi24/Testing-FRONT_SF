@@ -1,9 +1,12 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
+import configLogin
 
+#llama al archivo config
 driver = webdriver.Firefox()
-driver.get("http://localhost:8080/login")
+exec('\configLogin.py')
+time.sleep(4)
 
 if "login" in driver.title:
   print("Se pudo entrar a la pagina de login")

@@ -1,9 +1,13 @@
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 import time
- 
+import configRegistro
+
+#llama al archivo config
 driver = webdriver.Firefox()
-driver.get("http://localhost:8080/registro")
+exec('\configRegistro.py')
+time.sleep(4)
+
  
 time.sleep(2)
 
