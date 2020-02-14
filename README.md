@@ -1,3 +1,3 @@
 correr en la consola 
 "pip install selenium"
-apretar F5 para ejecutar cada test
+abrir el archivo en visual code, y luego apretar F5 para ejecutar el mismo

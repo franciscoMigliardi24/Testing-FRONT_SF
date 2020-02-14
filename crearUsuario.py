@@ -7,10 +7,11 @@ driver.get("http://http://localhost:8080/registro")
  
 time.sleep(2)
 
-if "logged.html" in driver.title:
-  print("Se pudo entras a la pagina de login")
+#verifica si se puedo entrar a la pagina para crear un usuario
+if "registro.html" in driver.title:
+  print("Se pudo entras a la pagina de registro de usuario")
 else:
-  print("No se pudo entras a la pagina de login")
+  print("No se pudo entras a la pagina de registro de usuario")
 
 
 #funcion que busca el campo y lo completa

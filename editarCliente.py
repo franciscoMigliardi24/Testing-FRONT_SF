@@ -6,10 +6,10 @@ driver = webdriver.Chrome()
 driver.get("http://localhost:8081/login")
 
 
-if "logged.html" in driver.title:
-  print("Se pudo entras a la pagina de login")
+if "login.html" in driver.title:
+  print("Se pudo entrar a la pagina de login")
 else:
-  print("No se pudo entras a la pagina de login")
+  print("No se pudo entrar a la pagina de login")
 
 #iniciar sesion
 elem = driver.find_element_by_name("nombreUsuario")
@@ -19,6 +19,9 @@ elem.send_keys("contrasena123")
 
 driver.find_element_by_class_name('boton-enviar').click()
 
+time.sleep(2)
+
+#varifica si se pudo inciar sesion
 if "login.html" in driver.title:
     print("Se pudo iniciar sesion")
 else:

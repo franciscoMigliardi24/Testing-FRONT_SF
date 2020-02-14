@@ -19,6 +19,13 @@ elem.send_keys("contrasena123")
 
 driver.find_element_by_class_name('boton-enviar').click()
 
+time.sleep(2)
+
+#varifica si se pudo inciar sesion
+if "logged.html" in driver.title:
+  print("Se pudo iniciar sesion")
+else:
+  print("No se pudo iniciar sesion")
 
 time.sleep(2)
 
