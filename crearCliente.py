@@ -5,11 +5,11 @@ import time
 driver = webdriver.Chrome()
 driver.get("http://localhost:8081/login")
 
-
-if "login.html" in driver.title:
-  print("Funciona")
+if "logged.html" in driver.title:
+  print("Se pudo entras a la pagina de login")
 else:
-  print("No funciona")
+  print("No se pudo entras a la pagina de login")
+
 
 #iniciar sesion
 elem = driver.find_element_by_name("nombreUsuario")
@@ -28,52 +28,52 @@ driver.find_element_by_class_name('boton-1').click()
 #abrir modal para crear cliente
 driver.find_element_by_class_name('agregarCliente').click()
 
+#funcion que busca el campo y lo completa
+def completarCamposFunc(idCampo, contenidoCampo):
+    try:
+        element = driver.find_element_by_name(idCampo)
+        element.send_keys(contenidoCampo)
+        print("el campo " + idCampo + "fue comletado con " + contenidoCampo)
+    except:
+        print("el campo " + idCampo + "no fue comletado con " + contenidoCampo)
+
 #ingresar nombre del cliente
-element = driver.find_element_by_name("nombreCliente")
-element.send_keys("cliente1")
+completarCamposFunc("nombreCliente", "cliente1")
 
 #ingresar ciudad
-element = driver.find_element_by_name("ciudad")
-element.send_keys("Buenos Aires")
+completarCamposFunc("ciudad", "Buenos Aires")
 
 #ingresar estado
-element = driver.find_element_by_name("estado")
-element.send_keys("Capital Federal")
+completarCamposFunc("estado", "Capital Federal")
 
 #ingresar pais
-element = driver.find_element_by_name("pais")
-element.send_keys("Argentina")
+completarCamposFunc("pais", "Argentina")
 
 #ingresar correro
-element = driver.find_element_by_name("correo")
-element.send_keys("cliente@cliente.com")  
+completarCamposFunc("correo", "cliente@cliente.com")
 
 #ingresar direccion
-element = driver.find_element_by_name("direccion")
-element.send_keys("calle falsa 123")
+completarCamposFunc("direccion", "calle falsa 123")
 
 #ingresar codigo postal
-element = driver.find_element_by_name("codigoPostal")
-element.send_keys("1426")   
+completarCamposFunc("codigoPostal", "1426") 
 
 #ingresar termino de pago
-element = driver.find_element_by_name("terminoPago")
-element.send_keys("12") 
+completarCamposFunc("terminoPago", "12")
 
 #ingresar palabra traduccion
-element = driver.find_element_by_name("palabraTraduccion")
-element.send_keys("20") 
+completarCamposFunc("palabraTraduccion", "20")
 
 #ingresar palabra edicion
-element = driver.find_element_by_name("palabraEdicion")
-element.send_keys("15") 
+completarCamposFunc("palabraEdicion", "15")
 
 #ingresar palabra Proofreading
-element = driver.find_element_by_name("palabraProofreading")
-element.send_keys("1") 
+completarCamposFunc("palabraProofreading", "1")
 
+time.sleep(2)
 
 #enviar cliente creado
 driver.find_element_by_class_name('boton-enviar').click()
-
-time.sleep(2)
+ale = driver.switch_to_alert()
+ale.text
+ale.accept

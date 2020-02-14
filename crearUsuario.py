@@ -5,41 +5,46 @@ import time
 driver = webdriver.Chrome()
 driver.get("http://http://localhost:8080/registro")
  
- 
-if "registro.html" in driver.title:
-  print("Funciona")
-else:
-  print("No funciona")
- 
 time.sleep(2)
- 
- 
+
+if "logged.html" in driver.title:
+  print("Se pudo entras a la pagina de login")
+else:
+  print("No se pudo entras a la pagina de login")
+
+
+#funcion que busca el campo y lo completa
+def completarCamposFunc(idCampo, contenidoCampo):
+    try:
+        element = driver.find_element_by_name(idCampo)
+        element.send_keys(contenidoCampo)
+        print("el campo " + idCampo + "fue comletado con " + contenidoCampo)
+    except:
+        print("el campo " + idCampo + "no fue comletado con " + contenidoCampo)
+
+
 #editar nombre usuario
-element = driver.find_element_by_id("nombre")
-element.send_keys("francsicoTest")
+completarCamposFunc("nombre", "francsicoTest")
  
 #editar apellido
-element = driver.find_element_by_id("apellido")
-element.send_keys("MigliardiTest")
+completarCamposFunc("apellido", "MigliardiTest")
  
 #editar contrasenia
-element = driver.find_element_by_id("contrsena")
-element.send_keys("contrasena123")
+completarCamposFunc("contrsena", "contrasena123")
  
 #confirmar contrasenia
-element = driver.find_element_by_id("contrsena2")
-element.send_keys("contrasena123")
+completarCamposFunc("contrsena2", "contrasena123")
  
 #editar ciudad
-element = driver.find_element_by_id("nombreUsuario")
-element.send_keys("FranTest")  
- 
+completarCamposFunc("nombreUsuario", "FranTest")
+
 #editar correro
-element = driver.find_element_by_id("correo")
-element.send_keys("frantest@fran.com")  
- 
- 
-#enviar respuesta de usuario creado
-driver.find_element_by_id('submit').click()
+completarCamposFunc("correo", "frantest@fran.com") 
  
 time.sleep(2)
+
+#enviar respuesta de usuario creado
+driver.find_element_by_id('submit').click()
+ale = driver.switch_to_alert()
+ale.text
+ale.accept

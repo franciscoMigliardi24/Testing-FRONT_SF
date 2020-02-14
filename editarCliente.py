@@ -6,10 +6,10 @@ driver = webdriver.Chrome()
 driver.get("http://localhost:8081/login")
 
 
-if "login.html" in driver.title:
-  print("Funciona")
+if "logged.html" in driver.title:
+  print("Se pudo entras a la pagina de login")
 else:
-  print("No funciona")
+  print("No se pudo entras a la pagina de login")
 
 #iniciar sesion
 elem = driver.find_element_by_name("nombreUsuario")
@@ -19,6 +19,10 @@ elem.send_keys("contrasena123")
 
 driver.find_element_by_class_name('boton-enviar').click()
 
+if "login.html" in driver.title:
+    print("Se pudo iniciar sesion")
+else:
+	print("No se pudo iniciar sesion")
 
 time.sleep(2)
 
@@ -26,103 +30,57 @@ time.sleep(2)
 driver.find_element_by_class_name('boton-1').click()
 
 #abrir modal para crear cliente
-driver.find_element_by_class_name('editar-tabla').click()
+driver.find_element_by_class_name('agregarCliente').click()
 
+#funcion para completar los campos
+def completarCamposFunc(idCampo, contenidoCampo):
+    try:
+        element = driver.find_element_by_name(idCampo)
+        element.send_keys(contenidoCampo)
+        print("el campo " + idCampo + "fue comletado con " + contenidoCampo)
+    except:
+        print("el campo " + idCampo + "no fue comletado con " + contenidoCampo)
 
 
 #ingresar nombre del cliente
-element = driver.find_element_by_name("nombreCliente")
-value = element.get_attribute("value")
-if value == "cliente1":
-	print("el nombre esta bien")
-else:
-	print("el nombre no esta bien")
-	driver.find_element_by_name("nombreCliente").clear()
-	driver.find_element_by_name("nombreCliente").send_keys("cliente1")
+completarCamposFunc("nombreCliente", "cliente1")
 
 #ingresar ciudad
-element = driver.find_element_by_name("ciudad")
-value = element.get_attribute("value")
-if value == "Buenos Aires":
-	print("la ciudad esta bien")
-else:
-	print("la ciudad no esta bien")
-	driver.find_element_by_name("ciudad").clear()
-	driver.find_element_by_name("ciudad").send_keys("Buenos Aires")
+completarCamposFunc("ciudad", "Buenos Aires")
 
 #ingresar estado
-element = driver.find_element_by_name("estado")
-value = element.get_attribute("value")
-if value == "Capital Federal":
-	print("el estado esta bien")
-else:
-	print("el estado no esta bien")
-	driver.find_element_by_name("estado").clear()
-	driver.find_element_by_name("estado").send_keys("Capital Federal")
+completarCamposFunc("estado", "Capital Federal")
 
 #ingresar pais
-element = driver.find_element_by_name("pais")
-value = element.get_attribute("value")
-if value == "Argentina":
-	print("el pais esta bien")
-else:
-	print("el pais no esta bien")
-	driver.find_element_by_name("pais").clear()
-	driver.find_element_by_name("pais").send_keys("Argentina")
+completarCamposFunc("pais", "Argentina")
 
 #ingresar correro
-element = driver.find_element_by_name("correo")
-value = element.get_attribute("value")
-if value == "cliente@cliente.com":
-	print("el correo esta bien")
-else:
-	print("el correo no esta bien")
-	driver.find_element_by_name("correo").clear()
-	driver.find_element_by_name("correo").send_keys("cliente@cliente.com")  
+completarCamposFunc("correo", "cliente@cliente.com")
 
 #ingresar direccion
-element = driver.find_element_by_name("direccion")
-value = element.get_attribute("value")
-if value == "calle falsa 123":
-	print("la direccion esta bien")
-else:
-	print("la direccion no esta bien")
-	driver.find_element_by_name("direccion").clear()
-	driver.find_element_by_name("direccion").send_keys("calle falsa 123")
-
-
+completarCamposFunc("direccion", "calle falsa 123")
 
 #ingresar codigo postal
-element = driver.find_element_by_name("codigoPostal")
-value = element.get_attribute("value")
-if value == "1426":
-	print("el codigoPostal esta bien")
-else:
-	print("el codigoPostal no esta bien")
-	driver.find_element_by_name("codigoPostal").clear()
-	driver.find_element_by_name("codigoPostal").send_keys("1426")   
+completarCamposFunc("codigoPostal", "1426")
 
 #ingresar termino de pago
-element = driver.find_element_by_name("terminoPago")
-value = element.get_attribute("value")
-if value == "12":
-	print("el termino de Pago esta bien")
-else:
-	print("el termino de Pago no esta bien")
-	driver.find_element_by_name("terminoPago").clear()
-	driver.find_element_by_name("terminoPago").send_keys("12") 
+completarCamposFunc("terminoPago", "12")
 
 #ingresar palabra traduccion
-element = driver.find_element_by_name("palabraTraduccion")
-value = element.get_attribute("value")
-if value == "20":
-	print("la palabra Traduccion esta bien")
-else:
-	print("la palabra Traduccion no esta bien")
-	driver.find_element_by_name("palabraTraduccion").clear()
-	driver.find_element_by_name("palabraTraduccion").send_keys("20") 
+completarCamposFunc("palabraTraduccion", "20")
+
+#ingresar palabra edicion
+completarCamposFunc("palabraEdicion", "15")
+
+#ingresar palabra Proofreading
+completarCamposFunc("palabraProofreading", "1")
+
+time.sleep(1)
+print("se completaron todos los campos")
 
 #enviar cliente creado
-driver.find_element_by_class_name('botonenviar').click()
+driver.find_element_by_class_name('boton-enviar').click()
+ale = driver.switch_to_alert()
+ale.text
+ale.accept
 
-time.sleep(2)
