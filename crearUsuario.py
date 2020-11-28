@@ -4,8 +4,20 @@ import time
 import configRegistro
 
 #llama al archivo config
-driver = webdriver.Firefox()
-exec('\configRegistro.py')
+cfgFile = open('test_front.cfg', 'r').read().split('\n')
+cfg = {}
+for line in cfgFile:
+  if '#' in line:
+    line = line[:line.find('#')]
+  setting = line.split('=')
+  cfg[setting[0].strip()] = setting[1].strip().replace('"', '')
+
+driver = None
+if cfg['web_driver'] == 'Firefox':
+  driver = webdriver.Firefox()
+elif cfg['web_driver'] == 'Chrome':
+  driver = webdriver.Chrome()
+driver.get(cfg['front_base_url'] + 'registro')
 time.sleep(4)
 
  
@@ -41,10 +53,10 @@ completarCamposFunc("contrsena", "contrasena123")
 completarCamposFunc("contrsena2", "contrasena123")
  
 #editar ciudad
-completarCamposFunc("nombreUsuario", "FranTest")
+completarCamposFunc("nombreUsuario", "FranTest1")
 
 #editar correro
-completarCamposFunc("correo", "frantest@fran.com") 
+completarCamposFunc("correo", "frantest1@fran.com") 
  
 time.sleep(2)
 
