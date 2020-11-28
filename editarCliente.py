@@ -54,8 +54,15 @@ driver.find_element_by_id('editar-tabla').click()
 def completarCamposFunc(idCampo, contenidoCampo):
     try:
         element = driver.find_element_by_name(idCampo)
-        element.send_keys(contenidoCampo)
-        print("el campo " + idCampo + "fue comletado con " + contenidoCampo)
+        if (element.get_attribute('value') == contenidoCampo):
+          print("el campo ya estaba completado correctamente")
+        else:
+          if (idCampo == "correo"):
+            element.send_keys(contenidoCampo)
+            print("el campo " + idCampo + "fue comletado con " + contenidoCampo)
+          else:
+            element.send_keys(contenidoCampo)
+            print("el campo " + idCampo + "fue comletado con " + contenidoCampo)
     except:
         print("el campo " + idCampo + "no fue comletado con " + contenidoCampo)
 
